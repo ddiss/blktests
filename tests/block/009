@@ -25,7 +25,7 @@ DESCRIPTION="check page-cache coherency after BLKDISCARD"
 . common/scsi_debug
 
 requires() {
-	_have_scsi_debug && _have_program xfs_io
+	_have_scsi_debug && _have_program xfs_io && _have_program blkdiscard
 }
 
 test() {
