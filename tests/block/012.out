@@ -8,6 +8,10 @@ pwrite64: Operation not permitted
 0000000 aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa
 *
 0200000
+blkdiscard: Operation not permitted
+0000000 aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa
+*
+0200000
 0
 0000000 cccc cccc cccc cccc cccc cccc cccc cccc
 *

@@ -36,9 +36,13 @@ test_device() {
 	# writes should fail while device is read-only
 	xfs_io -c "pwrite -w -S 0xbb -b 2M 0 2M" -d "$TEST_DEV" >>"$FULL"
 	dd if="$TEST_DEV" bs=2M count=1 2>>"$FULL" | hexdump
+	blkdiscard "$TEST_DEV"
+	dd if="$TEST_DEV" bs=2M count=1 2>>"$FULL" | hexdump
 	blockdev --setrw "$TEST_DEV"
 	blockdev --getro "$TEST_DEV"
 	xfs_io -c "pwrite -w -S 0xcc -b 2M 0 2M" -d "$TEST_DEV" >>"$FULL"
+	dd if="$TEST_DEV" bs=2M count=1 2>>"$FULL" | hexdump
+	blkdiscard "$TEST_DEV"
 	dd if="$TEST_DEV" bs=2M count=1 2>>"$FULL" | hexdump
 
 	echo "Test complete"
